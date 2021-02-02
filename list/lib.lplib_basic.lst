@@ -1,0 +1,67 @@
+# -- lib.lplib_basic.lst
+# -- find ../hdl -type f
+
+
+# -- find ../hdl/arith -type f
+# ------------------------------------------------------------------------------
+../hdl/arith/rtl/comp1.vhd
+../hdl/arith/rtl/comp2.vhd
+../hdl/arith/rtl/compN.vhd
+../hdl/arith/rtl/fa.vhd
+../hdl/arith/rtl/fs.vhd
+../hdl/arith/rtl/ha.vhd
+../hdl/arith/rtl/hs.vhd
+
+
+# -- find ../hdl/decoder -type f
+# ------------------------------------------------------------------------------
+../hdl/decoder/rtl/decoder2to4.vhd
+../hdl/decoder/rtl/decoder2to4_thermo.vhd
+../hdl/decoder/rtl/decoder3to8.vhd
+../hdl/decoder/rtl/decoder3to8_thermo.vhd
+../hdl/decoder/rtl/decoderNtoM.vhd
+../hdl/decoder/rtl/decoderNtoM_thermo.vhd
+../hdl/decoder/rtl/decoder_7seg.vhd
+
+
+# -- find ../hdl/ff -type f
+# ------------------------------------------------------------------------------
+../hdl/ff/rtl/dlatch.vhd
+../hdl/ff/rtl/ffd.vhd
+../hdl/ff/rtl/ffd_en.vhd
+../hdl/ff/rtl/ffjk.vhd
+../hdl/ff/rtl/ffsr.vhd
+../hdl/ff/rtl/fft.vhd
+../hdl/ff/rtl/reg.vhd
+
+
+# -- find ../hdl/gates -type f
+# ------------------------------------------------------------------------------
+../hdl/gates/rtl/and2.vhd
+../hdl/gates/rtl/and3.vhd
+../hdl/gates/rtl/and4.vhd
+../hdl/gates/rtl/nand2.vhd
+../hdl/gates/rtl/nand3.vhd
+../hdl/gates/rtl/nand4.vhd
+../hdl/gates/rtl/nor2.vhd
+../hdl/gates/rtl/nor3.vhd
+../hdl/gates/rtl/nor4.vhd
+../hdl/gates/rtl/or2.vhd
+../hdl/gates/rtl/or3.vhd
+../hdl/gates/rtl/or4.vhd
+../hdl/gates/rtl/xnor2.vhd
+../hdl/gates/rtl/xnor3.vhd
+../hdl/gates/rtl/xnor4.vhd
+../hdl/gates/rtl/xor2.vhd
+../hdl/gates/rtl/xor3.vhd
+../hdl/gates/rtl/xor4.vhd
+
+
+# -- find ../hdl/mux -type f
+# ------------------------------------------------------------------------------
+../hdl/mux/rtl/mux2x1.vhd
+../hdl/mux/rtl/mux2x2.vhd
+../hdl/mux/rtl/mux2xM.vhd
+../hdl/mux/rtl/mux4x1.vhd
+../hdl/mux/rtl/mux4x2.vhd
+../hdl/mux/rtl/mux4xM.vhd

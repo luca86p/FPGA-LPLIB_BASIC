@@ -1,4 +1,7 @@
 quicksetup.txt
-hdl
-list
+hdl/decoder
+hdl/arith
+hdl/ff
+hdl/gates
+hdl/mux
 rundir_riviera
