@@ -1,10 +1,10 @@
 -- =============================================================================
--- Whatis        : combinational decoder N to M=2**N bits
+-- Whatis        : 
 -- Project       : 
 -- -----------------------------------------------------------------------------
--- File          : decoderNtoM.vhd
+-- File          : dlatch.vhd
 -- Language      : VHDL-93
--- Module        : decoderNtoM
+-- Module        : dlatch
 -- Library       : lplib_basic
 -- -----------------------------------------------------------------------------
 -- Author(s)     : Luca Pilato <pilato[punto]lu[chiocciola]gmail[punto]com>
@@ -13,10 +13,7 @@
 -- Addr          : 
 -- -----------------------------------------------------------------------------
 -- Description
---
---  The enable is priority. If en=0 the output is 0.
---  N is constrained in range 2 to 8.
---
+-- 
 -- -----------------------------------------------------------------------------
 -- Dependencies
 -- 
@@ -36,38 +33,21 @@
 -- --------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
 
 
-entity decoderNtoM is
-    generic (
-        N    : integer range 2 to 8 := 2
-    );
+entity dlatch is
     port (
-        a    : in  std_logic_vector(N-1 downto 0);
-        en   : in  std_logic;
-        z    : out std_logic_vector(2**N-1 downto 0)
+        d   : in  std_logic;
+        en  : in  std_logic;
+        q   : out std_logic
     );
-end decoderNtoM;
+end dlatch;
 
 
-architecture rtl of decoderNtoM is
-
-    signal z_s : std_logic_vector(2**N-1 downto 0);
+architecture rtl of dlatch is
 
 begin
 
-    proc_NtoM: process(a,en)
-    begin
-        for i in 0 to 2**N-1 loop
-            if unsigned(a)=i then
-                z_s(i) <= en;
-            else
-                z_s(i) <= '0';
-            end if;
-        end loop;
-    end process proc_NtoM;
-
-    z <= z_s;
+    q <= d when en='1';
 
 end rtl;

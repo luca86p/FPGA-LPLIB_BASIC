@@ -58,16 +58,16 @@ begin
     proc_NtoM: process(a,en)
     begin
         if en='1' then
-	          for i in 0 to 2**N-1 loop
-	              if i>unsigned(a) then
-		                z(i) <= '0';
-		            else
-		                z(i) <= '1';
-		            end if;
-	          end loop;
-	      else
-	          z <= (others=>'0');
-	      end if;
+              for i in 0 to 2**N-1 loop
+                  if i>unsigned(a) then
+                        z(i) <= '0';
+                    else
+                        z(i) <= '1';
+                    end if;
+              end loop;
+          else
+              z <= (others=>'0');
+          end if;
     end process proc_NtoM;
 
 

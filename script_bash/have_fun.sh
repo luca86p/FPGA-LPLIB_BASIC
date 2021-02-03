@@ -24,6 +24,7 @@
 #       gettag
 #       testanddel
 #       errlog
+#       findtab
 #       funtic
 #       funtoc
 # 
@@ -177,6 +178,33 @@ function errlog {
 
     grep -Hin "warn"    *.log | grep -v "puts" | grep -iv  "0 warn"
     grep -Hin "error"   *.log | grep -v "puts" | grep -iv  "0 error"
+
+    printline
+    echo "... ${FUNCNAME[0]} ... done"
+    return
+}
+
+
+
+
+function findtab {
+    local Color_Off='\033[0m'       # Text Reset
+    local Red='\033[0;31m'          # Red
+    echo
+    echo "... ${FUNCNAME[0]}"
+    printline
+    
+    if [[ -z $1 ]]; then
+        echo "... ${FUNCNAME[0]} warning: no argument(s)"
+        return
+    fi
+
+    for fn in `find $1 -type f`; do
+        grep -qP '\t' $fn
+        if [[ $? -eq 0 ]]; then
+            echo -e "... the file $Red $fn $Color_Off have TAB(s)"
+        fi
+    done
 
     printline
     echo "... ${FUNCNAME[0]} ... done"

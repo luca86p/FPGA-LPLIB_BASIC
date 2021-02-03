@@ -1,10 +1,10 @@
 -- =============================================================================
--- Whatis        : combinational decoder N to M=2**N bits
+-- Whatis        : SR flip-flop
 -- Project       : 
 -- -----------------------------------------------------------------------------
--- File          : decoderNtoM.vhd
+-- File          : ffsr.vhd
 -- Language      : VHDL-93
--- Module        : decoderNtoM
+-- Module        : ffsr
 -- Library       : lplib_basic
 -- -----------------------------------------------------------------------------
 -- Author(s)     : Luca Pilato <pilato[punto]lu[chiocciola]gmail[punto]com>
@@ -13,10 +13,7 @@
 -- Addr          : 
 -- -----------------------------------------------------------------------------
 -- Description
---
---  The enable is priority. If en=0 the output is 0.
---  N is constrained in range 2 to 8.
---
+-- 
 -- -----------------------------------------------------------------------------
 -- Dependencies
 -- 
@@ -36,38 +33,41 @@
 -- --------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
 
 
-entity decoderNtoM is
+entity ffsr is
     generic (
-        N    : integer range 2 to 8 := 2
+        RST_POL : std_logic := '0';    -- 0:active low   1:active high
+        RST_VAL : std_logic := '0'     -- q value at rst
     );
     port (
-        a    : in  std_logic_vector(N-1 downto 0);
-        en   : in  std_logic;
-        z    : out std_logic_vector(2**N-1 downto 0)
+        clk     : in  std_logic;
+        rst     : in  std_logic;
+        s       : in  std_logic;
+        r       : in  std_logic;
+        q       : out std_logic
     );
-end decoderNtoM;
+end ffsr;
 
+architecture rtl of ffsr is
 
-architecture rtl of decoderNtoM is
-
-    signal z_s : std_logic_vector(2**N-1 downto 0);
+    signal q_s : std_logic;
 
 begin
 
-    proc_NtoM: process(a,en)
+    proc_ff: process(clk,rst)
     begin
-        for i in 0 to 2**N-1 loop
-            if unsigned(a)=i then
-                z_s(i) <= en;
-            else
-                z_s(i) <= '0';
+        if rst=RST_POL then
+            q_s <= RST_VAL;
+        elsif rising_edge(clk) then
+            if s='1' then
+                q_s <= '1';
+            elsif r='1' then
+                q_s <= '0';
             end if;
-        end loop;
-    end process proc_NtoM;
+        end if;
+    end process proc_ff;
 
-    z <= z_s;
+    q <= q_s;
 
 end rtl;
