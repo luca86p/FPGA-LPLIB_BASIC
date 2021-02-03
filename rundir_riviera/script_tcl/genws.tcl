@@ -88,6 +88,23 @@ add_liblist $LIB
 #
 design.compile $DESIGN
 
+# ------------------------------------------------------------------------------
+set DESIGN  basic_verif
+set LIB     lplib_$DESIGN
+workspace.design.create $DESIGN . -library $LIB
+workspace.design.setactive $DESIGN
+# 
+amap $LIB $DESIGN/$LIB/$LIB.lib
+#
+add_liblist $LIB
+#
+# Dependencies: for workspace/design compile
+workspace.dependencies.add $DESIGN basic
+# Map the "outside" design libraries
+amap lplib_basic basic/lplib_basic/lplib_basic.lib
+#
+design.compile $DESIGN
+
 
 # ------------------------------------------------------------------------------
 # workspace.dependencies.graph.show
