@@ -1,4 +1,4 @@
-# FPGA_BASIC
+# FPGA-LPLIB_BASIC
 VHDL design repository with basic units such as logic gates, flip-flops, muxes and decoders.
 
 ## Directories
