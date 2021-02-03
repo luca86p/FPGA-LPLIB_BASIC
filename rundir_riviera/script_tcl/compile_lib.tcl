@@ -1,5 +1,5 @@
 # =============================================================================
-# Whatis        : Tcl file for Aldec Riviera-PRO, HDL simulator
+# Whatis        : Tcl script for Aldec Riviera-PRO, HDL simulator
 # Project       : 
 # -----------------------------------------------------------------------------
 # File          : compile_lib.tcl

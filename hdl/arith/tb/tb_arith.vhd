@@ -1,3 +1,33 @@
+-- =============================================================================
+-- Whatis        : testbench
+-- Project       : 
+-- -----------------------------------------------------------------------------
+-- File          : tb_arith.vhd
+-- Language      : VHDL-93
+-- Module        : tb
+-- Library       : lplib_basic_verif
+-- -----------------------------------------------------------------------------
+-- Author(s)     : Luca Pilato <pilato[punto]lu[chiocciola]gmail[punto]com>
+--                 
+-- Company       : 
+-- Addr          : 
+-- -----------------------------------------------------------------------------
+-- Description
+-- 
+-- -----------------------------------------------------------------------------
+-- Dependencies
+-- 
+-- -----------------------------------------------------------------------------
+-- Issues
+-- 
+-- -----------------------------------------------------------------------------
+-- Copyright (c) 2021 Luca Pilato
+-- MIT License
+-- -----------------------------------------------------------------------------
+-- date        who               changes
+-- 2021-02-03  Luca Pilato       file creation
+-- =============================================================================
+
 
 -- STD lib
 -- ----------------------------------------
@@ -55,6 +85,18 @@ architecture beh of tb is
     signal comp1_lt     : std_logic;
     signal comp1_eq     : std_logic;
     signal comp1_gt     : std_logic;
+    --
+    signal comp2_a      : std_logic_vector(1 downto 0);
+    signal comp2_b      : std_logic_vector(1 downto 0);
+    signal comp2_lt     : std_logic;
+    signal comp2_eq     : std_logic;
+    signal comp2_gt     : std_logic;
+    --
+    signal compN_a      : std_logic_vector(N-1 downto 0);
+    signal compN_b      : std_logic_vector(N-1 downto 0);
+    signal compN_lt     : std_logic;
+    signal compN_eq     : std_logic;
+    signal compN_gt     : std_logic;
 
 
 begin
@@ -80,7 +122,7 @@ begin
     -- end process proc_clk;
 
 
-    -- Unit Under Test
+    -- Unit(s) Under Test
     -- ----------------------------------------
     i_comp1: entity lplib_basic.comp1(rtl)
         port map (
@@ -89,6 +131,27 @@ begin
             lt      => comp1_lt ,
             eq      => comp1_eq ,
             gt      => comp1_gt 
+        );
+
+    i_comp2: entity lplib_basic.comp2(rtl)
+        port map (
+            a       => comp2_a  ,
+            b       => comp2_b  ,
+            lt      => comp2_lt ,
+            eq      => comp2_eq ,
+            gt      => comp2_gt 
+        );
+
+    i_compN: entity lplib_basic.compN(rtl)
+        generic map (
+            N       => N
+        )
+        port map (
+            a       => compN_a  ,
+            b       => compN_b  ,
+            lt      => compN_lt ,
+            eq      => compN_eq ,
+            gt      => compN_gt 
         );
   
 
@@ -105,6 +168,12 @@ begin
         comp1_a     <= '0';
         comp1_b     <= '0';
         --
+        comp2_a     <= "00";
+        comp2_b     <= "00";
+        --
+        compN_a     <= (others=>'0');
+        compN_b     <= (others=>'0');
+        --
         wait for 333 ns;
         en_clk     <= '1';
         wait for 333 ns;
@@ -115,10 +184,34 @@ begin
         --
         -- ========
         tcase   <= 1;
+        wait until rising_edge(clk);
         --
-        
+        --
+        comp1_a     <= '1';
+        comp1_b     <= '0';
+        --
+        comp2_a     <= "10";
+        comp2_b     <= "00";
+        --
+        compN_a     <= std_logic_vector(TO_UNSIGNED(2**N-1,N));
+        compN_b     <= (others=>'0');
+        --
+        wait until rising_edge(clk);
+        --
+        comp1_a     <= '0';
+        comp1_b     <= '1';
+        --
+        comp2_a     <= "00";
+        comp2_b     <= "10";
+        --
+        compN_a     <= (others=>'0');
+        compN_b     <= std_logic_vector(TO_UNSIGNED(2**N-1,N));
+        --
+        wait until rising_edge(clk);
+        --
         -- ======== Power Off
         tcase   <= -1;
+        wait until rising_edge(clk);
         --
         wait for 666 us;
         wait until rising_edge(clk);
