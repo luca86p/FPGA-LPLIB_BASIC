@@ -218,7 +218,7 @@ elif [[ $1 == "genws" ]]; then
     # check into *.log
     errlog
 
-    # move the log file in its directoriy
+    # move the log file in its directory
     mv $LOG_FILE $(ls -dr1 ws_${WSNAME}_* | head -1)
 
 elif [[ $1 == "simulate" ]]; then
