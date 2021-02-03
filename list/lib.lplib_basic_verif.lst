@@ -1,0 +1,6 @@
+# -- lib.lplib_basic.lst
+# -- find ../hdl -type f | grep tb_*
+
+# -- find ../hdl -type f | grep tb_*
+# ------------------------------------------------------------------------------
+../hdl/arith/tb/tb_arith.vhd
