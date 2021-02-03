@@ -1,5 +1,4 @@
 quicksetup.txt
-hdl/decoder
 hdl/ff
 hdl/gates
 hdl/mux
