@@ -1,4 +1,4 @@
-# -- lib.lplib_basic.lst
+# -- lib.lplib_basic_verif.lst
 # -- find ../hdl -type f | grep tb_*
 
 # -- find ../hdl -type f | grep tb_*
